@@ -1,0 +1,215 @@
+# data file for the Fltk User Interface Designer (fluid)
+version 1.0100 
+header_name {.h} 
+code_name {.cxx} 
+gridx 5 
+gridy 5 
+snap 3
+class US3DTouchGui {open
+} {
+  Function {US3DTouchGui()} {open
+  } {
+    Fl_Window m_CWnd {
+      label {US3DTouch 1.0} open
+      xywh {0 19 1028 717} color 206 labelsize 12 resizable visible
+    } {
+      Fl_Group {} {
+        xywh {0 638 820 77} box EMBOSSED_BOX
+      } {
+        Fl_Button {} {
+          label {Load...}
+          callback {Load()}
+          xywh {705 661 59 20} box PLASTIC_UP_BOX down_box PLASTIC_DOWN_BOX labelsize 13
+        }
+        Fl_Progress m_CProgress {
+          xywh {705 683 105 18} box PLASTIC_UP_BOX selection_color 61 labelsize 12
+        }
+        Fl_Value_Slider m_COpacity {
+          label {Object opacity}
+          callback {SetOpacity()}
+          xywh {50 658 130 20} type {Horz Knob} box PLASTIC_DOWN_BOX selection_color 134 labelsize 12 align 5 value 1
+        }
+        Fl_Value_Slider m_CProxyRadius {
+          label {Proxy radius}
+          callback {SetProxyRadius()}
+          xywh {180 658 130 20} type {Horz Knob} box PLASTIC_DOWN_BOX selection_color 134 labelsize 12 align 5 maximum 20 value 2
+        }
+        Fl_Light_Button m_COBBTreeView {
+          label {OBB Tree}
+          callback {SetOBBTreeView()}
+          xywh {320 658 80 20} box PLASTIC_UP_BOX value 1 selection_color 2 labelsize 12
+        }
+        Fl_Output m_CNCells {
+          label {Number of triangle}
+          xywh {575 660 70 15} box EMBOSSED_BOX labelsize 11 align 1
+        }
+        Fl_Light_Button m_COBBTreeSurfaceType {
+          label {OBB S/W}
+          callback {SetOBBTreeSurfaceType()}
+          xywh {320 680 80 20} box PLASTIC_UP_BOX value 1 selection_color 2 labelsize 12
+        }
+        Fl_Value_Slider m_COBBTreeOpacity {
+          label {OBB Tree  opacity}
+          callback {SetOBBTreeOpacity()}
+          xywh {408 655 130 20} type {Horz Knob} box PLASTIC_DOWN_BOX selection_color 134 labelsize 10 align 5 value 0.1
+        }
+        Fl_Value_Slider m_COBBTreeLevel {
+          label {OBB Tree  level}
+          callback {SetOBBTreeLevel()}
+          xywh {410 690 130 20} type {Horz Knob} box PLASTIC_DOWN_BOX selection_color 134 labelsize 10 align 5 maximum 9 step 1
+        }
+      }
+      Fl_Scroll m_CRender {
+        xywh {0 2 817 634} box FLAT_BOX color 22
+        code0 {\#include "vtkFlRender.h"}
+        class vtkFlRender
+      } {}
+      Fl_Group m_CHapticTab {
+        xywh {820 1 205 714} box EMBOSSED_BOX labeltype ENGRAVED_LABEL labelsize 15 align 0 resizable
+      } {
+        Fl_Group {} {
+          label Proxy
+          xywh {829 154 190 45} box EMBOSSED_BOX color 89 labeltype EMBOSSED_LABEL labelfont 4 align 5
+        } {
+          Fl_Output m_CPhantomProxy_X {
+            label X
+            xywh {839 174 55 15} labelsize 10 align 5
+          }
+          Fl_Output m_CPhantomProxy_Y {
+            label Y
+            xywh {899 174 55 15} labelsize 10 align 5
+          }
+          Fl_Output m_CPhantomProxy_Z {
+            label Z
+            xywh {959 174 55 15} labelsize 10 align 5
+          }
+        }
+        Fl_Group {} {
+          label SCP
+          xywh {829 89 190 45} box EMBOSSED_BOX color 61 labeltype EMBOSSED_LABEL labelfont 4 align 5
+        } {
+          Fl_Output m_CPhantomSCP_X {
+            label X
+            xywh {839 109 51 15} labelsize 10 align 5
+          }
+          Fl_Output m_CPhantomSCP_Y {
+            label Y
+            xywh {899 109 55 15} labelsize 10 align 5
+          }
+          Fl_Output m_CPhantomSCP_Z {
+            label Z
+            xywh {959 109 55 15} labelsize 10 align 5
+          }
+        }
+        Fl_Light_Button m_CServoLoop {
+          label {Start servo loop}
+          callback {SetServoLoop()}
+          xywh {905 445 112 30} box PLASTIC_UP_BOX selection_color 2 labelfont 1 labelsize 12 when 1
+        }
+        Fl_Group {} {
+          label Orientation
+          xywh {829 25 190 45} box EMBOSSED_BOX color 19 labeltype EMBOSSED_LABEL align 5 resizable
+        } {
+          Fl_Output m_CPhantomAngle_X {
+            label X
+            xywh {839 44 51 15} labelsize 10 align 5
+          }
+          Fl_Output m_CPhantomAngle_Y {
+            label Y
+            xywh {899 44 51 15} labelsize 10 align 5
+          }
+          Fl_Output m_CPhantomAngle_Z {
+            label Z
+            xywh {959 44 51 15} labelsize 10 align 5
+          }
+        }
+        Fl_Output m_CInOut {
+          xywh {830 447 70 25} box EMBOSSED_BOX color 95 labelsize 10 align 1 textsize 13 textcolor 88
+        }
+        Fl_Output m_CUpdateRate {
+          label {Average update rate}
+          xywh {830 500 188 30} box EMBOSSED_BOX color 221 labeltype EMBOSSED_LABEL labelfont 4 labelsize 13 align 5 textsize 27
+        }
+        Fl_Group {} {
+          label {Velocity [mm/sec]}
+          xywh {830 225 190 45} box EMBOSSED_BOX color 252 labeltype EMBOSSED_LABEL labelfont 4 align 5
+        } {
+          Fl_Output m_CPhantomVelocity_X {
+            label Vx
+            xywh {840 245 55 15} labelsize 10 align 5
+          }
+          Fl_Output m_CPhantomVelocity_Y {
+            label Vy
+            xywh {900 245 55 15} labelsize 10 align 5
+          }
+          Fl_Output m_CPhantomVelocity_Z {
+            label Vz
+            xywh {960 245 55 15} labelsize 10 align 5
+          }
+        }
+        Fl_Group {} {
+          label {Force [N]}
+          xywh {830 295 190 45} box EMBOSSED_BOX color 174 labeltype EMBOSSED_LABEL labelfont 4 align 5
+        } {
+          Fl_Output m_CPhantomForce_X {
+            label Fx
+            xywh {840 315 55 15} labelsize 10 align 5
+          }
+          Fl_Output m_CPhantomForce_Y {
+            label Fy
+            xywh {900 315 55 15} labelsize 10 align 5
+          }
+          Fl_Output m_CPhantomForce_Z {
+            label Fz
+            xywh {960 315 55 15} labelsize 10 align 5
+          }
+        }
+        Fl_Group {} {
+          xywh {830 360 190 45} box EMBOSSED_BOX color 95 labeltype EMBOSSED_LABEL labelfont 4 align 5
+        } {
+          Fl_Output m_CPhantomDelta {
+            label {Delta [mm]}
+            xywh {840 380 55 15} labelsize 10 align 5
+          }
+          Fl_Output m_CPhantomForceSize {
+            label {|F| [N]}
+            xywh {900 380 55 15} labelsize 10 align 5
+          }
+          Fl_Output {} {
+            xywh {960 380 55 15} labelsize 10 align 5
+          }
+        }
+        Fl_Value_Slider m_CDamping {
+          label {Damping factor}
+          callback {SetDamping()}
+          xywh {835 555 135 25} type {Horz Knob} box PLASTIC_DOWN_BOX selection_color 134 labelsize 10 align 5 maximum 3 value 2
+        }
+      }
+      Fl_Value_Slider m_CElastic {
+        label {Elastic factor}
+        callback {SetElastic()} selected
+        xywh {835 595 135 25} type {Horz Knob} box PLASTIC_DOWN_BOX selection_color 134 labelsize 10 align 5 maximum 3000 step 1 value 500
+      }
+    }
+  }
+  Function {Load()} {return_type virtual
+  } {}
+  Function {SetServoLoop()} {return_type {virtual void}
+  } {}
+  Function {SetOpacity()} {open return_type {virtual void}
+  } {}
+  Function {SetProxyRadius()} {open return_type {virtual void}
+  } {}
+  Function {SetOBBTreeView()} {open return_type {virtual void}
+  } {}
+  Function {SetOBBTreeSurfaceType()} {open return_type {virtual void}
+  } {}
+  Function {SetOBBTreeOpacity()} {open return_type {virtual void}
+  } {}
+  Function {SetOBBTreeLevel()} {open return_type {virtual void}
+  } {}
+  Function {SetDamping()} {open return_type {virtual void}
+  } {}
+  Function {SetElastic()} {open return_type {virtual void}
+  } {}
+} 

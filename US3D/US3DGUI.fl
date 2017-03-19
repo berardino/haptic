@@ -1,0 +1,478 @@
+# data file for the Fltk User Interface Designer (fluid)
+version 1.0100 
+header_name {.h} 
+code_name {.cxx} 
+gridx 5 
+gridy 5 
+snap 3
+class US3DGui {open
+} {
+  Function {US3DGui()} {open
+  } {
+    Fl_Window m_CWnd {
+      label {US3D 1.3} open
+      xywh {0 15 1024 721} color 206 labelsize 12 resizable visible
+    } {
+      Fl_Tabs {} {open
+        xywh {590 0 460 755} labelsize 11
+      } {
+        Fl_Group {} {
+          label {Ultrasound volume} selected
+          xywh {590 15 435 705} labeltype EMBOSSED_LABEL labelsize 10 resizable
+        } {
+          Fl_Group {} {open
+            xywh {595 450 425 260} box PLASTIC_UP_BOX color 254 labelsize 10 align 5
+          } {
+            Fl_Group {} {
+              label Voxel
+              xywh {610 475 61 90} box PLASTIC_DOWN_FRAME labeltype EMBOSSED_LABEL labelsize 10 align 5
+            } {
+              Fl_Output m_CVoxelWidthText {
+                label Width
+                xywh {615 490 50 15} box NO_BOX color 134 labelsize 10 align 5 textsize 10 textcolor 216
+              }
+              Fl_Output m_CVoxelHeightText {
+                label Height
+                xywh {615 518 50 15} box NO_BOX color 134 labelsize 10 align 5 textsize 10 textcolor 216
+              }
+              Fl_Output m_CVoxelDepthText {
+                label Depth
+                xywh {616 544 50 15} box NO_BOX color 134 labelsize 10 align 5 textsize 10 textcolor 216
+              }
+            }
+            Fl_Group {} {
+              label Volume
+              xywh {680 475 60 90} box PLASTIC_DOWN_FRAME labeltype EMBOSSED_LABEL labelsize 10 align 5
+            } {
+              Fl_Output m_CVolumeWidthText {
+                label Width
+                xywh {685 490 50 15} box NO_BOX color 134 labelsize 10 align 5 textsize 10 textcolor 216
+              }
+              Fl_Output m_CVolumeHeightText {
+                label Height
+                xywh {684 517 50 15} box NO_BOX color 134 labelsize 10 align 5 textsize 10 textcolor 216
+              }
+              Fl_Output m_CVolumeDepthText {
+                label Depth
+                xywh {685 544 50 15} box NO_BOX color 134 labelsize 10 align 5 textsize 10 textcolor 216
+              }
+            }
+            Fl_Group {} {
+              label {V.O.I}
+              xywh {750 475 60 90} box PLASTIC_DOWN_FRAME labeltype EMBOSSED_LABEL labelsize 10 align 5
+            } {
+              Fl_Output m_CVOIWidthText {
+                label Width
+                xywh {755 490 50 15} box NO_BOX color 134 labelsize 10 align 5 textsize 10 textcolor 216
+              }
+              Fl_Output m_CVOIHeightText {
+                label Height
+                xywh {754 517 51 15} box NO_BOX color 134 labelsize 10 align 5 textsize 10 textcolor 216
+              }
+              Fl_Output m_CVOIDepthText {
+                label Depth
+                xywh {755 544 50 15} box NO_BOX color 134 labelsize 10 align 5 textsize 10 textcolor 216
+              }
+            }
+            Fl_Output m_CVolumeMeasure {
+              label {Volume measure}
+              xywh {610 585 80 15} box NO_BOX color 134 labeltype EMBOSSED_LABEL labelsize 10 align 5 textsize 10 textcolor 216
+            }
+            Fl_Output m_CVolumeVOIMeasure {
+              label {V.O.I measure}
+              xywh {610 620 80 15} box NO_BOX color 134 labeltype EMBOSSED_LABEL labelsize 10 align 5 textsize 10 textcolor 216
+            }
+            Fl_Button m_CLoad {
+              label {Load...}
+              callback {Load();}
+              xywh {745 668 65 25} box PLASTIC_UP_BOX down_box PLASTIC_DOWN_BOX labelsize 11
+            }
+            Fl_Slider m_CBrightness {
+              label Brightness
+              callback {SetBrightness();}
+              xywh {610 670 120 20} type {Horz Knob} box PLASTIC_DOWN_BOX color 254 selection_color 237 labelsize 10 align 5 minimum 256 maximum 0 step 1 value 128 deactivate
+            }
+          }
+          Fl_Group {} {
+            xywh {595 26 425 354} box FLAT_BOX color 22
+          } {
+            Fl_Scroll m_CRay {open
+              xywh {595 26 425 354} box FLAT_BOX color 22 resizable
+              code0 {\#include "vtkFlRayCastingRenderWindowInteractor.h"}
+              class vtkFlRayCastingRenderWindowInteractor
+            } {}
+          }
+          Fl_Progress m_Progress {
+            xywh {595 430 425 20} box PLASTIC_UP_BOX selection_color 61 labelsize 12 align 0
+          }
+          Fl_Value_Slider m_CVolumeResolution {
+            label Resolution
+            callback {SetVolumeResolution()}
+            xywh {890 380 130 20} type {Horz Knob} box PLASTIC_DOWN_BOX labelsize 10 align 4 when 4 minimum 1 maximum 50 step 1 value 5 deactivate
+          }
+          Fl_Button m_CVolumeRender {
+            label Render
+            callback {VolumeRender()}
+            xywh {595 380 65 20} box PLASTIC_UP_BOX down_box PLASTIC_DOWN_BOX labelsize 12 deactivate
+          }
+        }
+        Fl_Group m_C3DTab {
+          label 3D open
+          xywh {590 15 455 740} labeltype EMBOSSED_LABEL labelsize 10 hide deactivate
+        } {
+          Fl_Progress m_CProgressRender {
+            xywh {820 576 203 19} box PLASTIC_UP_BOX selection_color 61 labelsize 12
+          }
+          Fl_Value_Slider m_CSmoothing {
+            label Smoothing
+            callback {SetSmoothing();}
+            xywh {670 621 95 20} type {Horz Knob} box PLASTIC_DOWN_BOX selection_color 237 labelsize 10 align 5 step 0.05 value 0.5
+          }
+          Fl_Value_Slider m_CDecimate {
+            label Decimate
+            callback {SetDecimate()}
+            xywh {670 655 95 20} type {Horz Knob} box PLASTIC_DOWN_BOX selection_color 237 labelsize 10 align 5 value 0.5
+          }
+          Fl_Button m_CSaveVRML {
+            label {Export VRML}
+            callback {SaveVRML();}
+            xywh {945 690 71 25} box PLASTIC_UP_BOX down_box PLASTIC_DOWN_BOX labelsize 10 deactivate
+          }
+          Fl_Button m_CRenderRender {
+            label Render
+            callback {SurfaceRender();}
+            xywh {595 575 65 20} box PLASTIC_UP_BOX down_box PLASTIC_DOWN_BOX labelsize 12
+          }
+          Fl_Value_Slider m_COpacity {
+            label Opacity
+            callback {SetOpacity();}
+            xywh {765 620 95 20} type {Horz Knob} box PLASTIC_DOWN_BOX selection_color 237 labelsize 10 align 5 when 4 value 1
+          }
+          Fl_Group {} {open
+            xywh {595 20 425 555} box FLAT_BOX color 22
+          } {
+            Fl_Group m_3D {open
+              xywh {595 20 424 555} color 22
+            } {
+              Fl_Scroll m_CRender {open
+                xywh {595 20 424 555} color 22 resizable
+                code0 {\#include "vtkFlRender.h"}
+                class vtkFlRender
+              } {}
+            }
+          }
+          Fl_Pack {} {
+            label Rendering open
+            xywh {595 620 60 60} box PLASTIC_DOWN_FRAME labelsize 10 align 5
+          } {
+            Fl_Button m_Flat {
+              label Flat
+              callback {SetShadingInterpolationMethod()}
+              xywh {595 620 60 20} type Radio box PLASTIC_UP_BOX down_box PLASTIC_DOWN_BOX labelsize 10
+            }
+            Fl_Button m_Gouraund {
+              label Gouraund
+              callback {SetShadingInterpolationMethod()}
+              xywh {595 640 60 20} type Radio box PLASTIC_UP_BOX down_box PLASTIC_DOWN_BOX value 1 labelsize 10
+            }
+            Fl_Light_Button m_Wireframe {
+              label {S/W}
+              callback {SetShadingInterpolationMethod()}
+              xywh {595 660 60 20} box PLASTIC_UP_BOX down_box PLASTIC_DOWN_BOX selection_color 216 labelsize 10
+            }
+          }
+          Fl_Value_Slider m_FeatureAngle {
+            label {Feature angle}
+            callback {SetFeatureAngle()}
+            xywh {765 655 95 20} type {Horz Knob} box PLASTIC_DOWN_BOX selection_color 237 labelsize 10 align 5 maximum 180 step 1 value 45
+          }
+          Fl_Output m_CSurfaceNVertexText {
+            label {n° Vertex}
+            xywh {710 685 55 15} box PLASTIC_UP_BOX color 134 labelsize 9 textsize 10 textcolor 216
+          }
+          Fl_Output m_CSurfaceNPolygonText {
+            label {n° Polygon}
+            xywh {710 700 55 15} box PLASTIC_UP_BOX color 134 labelsize 9 textsize 10 textcolor 216
+          }
+          Fl_Button m_CSaveVTK {
+            label {Save 3D}
+            callback {SaveVTK()}
+            xywh {945 665 71 25} box PLASTIC_UP_BOX down_box PLASTIC_DOWN_BOX labelsize 10 deactivate
+          }
+        }
+      }
+      Fl_Tabs m_CImagesTab {open
+        xywh {0 0 590 725} deactivate
+      } {
+        Fl_Group {} {
+          label Filtered open
+          xywh {0 15 590 705} labeltype ENGRAVED_LABEL labelsize 10 resizable
+        } {
+          Fl_Value_Slider m_CHeight {
+            label Coronal
+            callback {SetFilteredSliceHeight()}
+            xywh {320 565 250 20} type {Horz Knob} box PLASTIC_DOWN_BOX selection_color 95 labelsize 10 align 6 step 1
+          }
+          Fl_Value_Slider m_CWidth {
+            label Sagittal
+            callback {SetFilteredSliceWidth()}
+            xywh {25 275 250 20} type {Horz Knob} box PLASTIC_DOWN_BOX selection_color 80 labelsize 10 align 6 step 1
+          }
+          Fl_Value_Slider m_CDepth {
+            label Axial
+            callback {SetFilteredSliceDepth()}
+            xywh {320 275 250 20} type {Horz Knob} box PLASTIC_DOWN_BOX selection_color 60 labelsize 10 align 6 step 1
+          }
+          Fl_Group {} {open
+            xywh {5 315 290 250} box FLAT_BOX color 22
+          } {
+            Fl_Group m_C3ViewRender {open
+              xywh {5 315 290 250} resizable
+              code0 {\#include "vtkFL3ViewRenderWindowInteractor.h"}
+              class vtkFL3ViewRenderWindowInteractor
+            } {}
+          }
+          Fl_Group {} {open
+            xywh {25 25 250 250} box FLAT_BOX color 22
+          } {
+            Fl_Group m_CDataFilteredSaggittal {open
+              xywh {25 25 250 250} resizable
+              code0 {\#include "vtkFlImageRenderWindowInteractor.h"}
+              class vtkFlImageRenderWindowInteractor
+            } {}
+          }
+          Fl_Group {} {open
+            xywh {320 25 250 250} box FLAT_BOX color 22
+          } {
+            Fl_Group m_CDataFilteredAxial {open
+              xywh {320 25 250 250} resizable
+              code0 {\#include "vtkFlImageRenderWindowInteractor.h"}
+              class vtkFlImageRenderWindowInteractor
+            } {}
+          }
+          Fl_Group {} {open
+            xywh {320 315 250 250} box FLAT_BOX color 22
+          } {
+            Fl_Group m_CDataFilteredCoronal {open
+              xywh {320 315 250 250} box FLAT_BOX color 22 resizable
+              code0 {\#include "vtkFlImageRenderWindowInteractor.h"}
+              class vtkFlImageRenderWindowInteractor
+            } {}
+          }
+          Fl_Check_Button m_CMoveSlice {
+            label {Move slice}
+            xywh {5 570 80 20} box FLAT_BOX down_box DOWN_BOX value 1 labelsize 11
+          }
+          Fl_Group {} {
+            label {Standard deviations} open
+            xywh {235 615 170 95} box PLASTIC_UP_BOX color 254 labelsize 10 align 5
+          } {
+            Fl_Value_Slider m_CSDeviationY {
+              label y
+              callback {SetStandardDeviation(o->value())}
+              xywh {250 645 145 15} type {Horz Knob} box FLAT_BOX align 4 when 4 maximum 20 step 0.1 value 3.5
+            }
+            Fl_Value_Slider m_CSDeviationZ {
+              label z
+              callback {SetStandardDeviation(o->value())}
+              xywh {250 665 145 15} type {Horz Knob} box FLAT_BOX align 4 when 4 maximum 20 step 0.1 value 3.5
+            }
+            Fl_Value_Slider m_CSDeviationX {
+              label x
+              callback {SetStandardDeviation(o->value())}
+              xywh {250 625 145 15} type {Horz Knob} box FLAT_BOX align 4 when 4 maximum 20 step 0.1 value 3.5
+            }
+          }
+          Fl_Group {} {
+            label Radius open
+            xywh {420 615 150 95} box PLASTIC_UP_BOX color 254 labelsize 10 align 5
+          } {
+            Fl_Value_Slider m_CRadiusY {
+              label y
+              callback {SetRadius(o->value())}
+              xywh {435 645 125 15} type {Horz Knob} box FLAT_BOX align 4 when 4 maximum 10 step 0.1 value 0.8
+            }
+            Fl_Value_Slider m_CRadiusX {
+              label x
+              callback {SetRadius(o->value())}
+              xywh {435 625 125 15} type {Horz Knob} box FLAT_BOX align 4 when 4 maximum 10 step 0.1 value 0.8
+            }
+            Fl_Value_Slider m_CRadiusZ {
+              label z
+              callback {SetRadius(o->value())}
+              xywh {435 665 125 15} type {Horz Knob} box FLAT_BOX align 4 when 4 maximum 10 step 0.1 value 0.8
+            }
+          }
+          Fl_Check_Button m_CStandardDeviationLock {
+            label Lock
+            xywh {250 685 80 15} down_box DOWN_BOX value 1 color 254 labelsize 11
+          }
+          Fl_Check_Button m_CRadiusLock {
+            label Lock
+            xywh {435 685 80 15} down_box DOWN_BOX value 1 color 254 labelsize 11
+          }
+          Fl_Output m_CPosX {
+            label x
+            xywh {97 572 40 15} labelsize 10 textsize 10
+          }
+          Fl_Output m_CPosY {
+            label y
+            xywh {155 572 40 15} labelsize 10 textsize 10
+          }
+          Fl_Roller m_CDepthUp {
+            callback {SetVOIDepthUp()}
+            xywh {570 495 15 70} box PLASTIC_DOWN_BOX maximum 100 step 1
+          }
+          Fl_Roller m_CDepthDown {
+            callback {SetVOIDepthDown()}
+            xywh {305 495 15 70} box PLASTIC_DOWN_BOX maximum 100 step 1
+          }
+          Fl_Button {} {
+            label {Extract VOI}
+            callback {ExtractVOI()}
+            xywh {220 570 75 20} box PLASTIC_UP_BOX labelsize 11
+          }
+        }
+        Fl_Group {} {
+          label Segmented open
+          xywh {0 15 590 710} labeltype ENGRAVED_LABEL labelsize 10 hide
+        } {
+          Fl_Group {} {open
+            xywh {25 25 250 250} box FLAT_BOX color 22
+          } {
+            Fl_Group m_CDataSegmentedSaggittal {open
+              xywh {25 25 250 250}
+              code0 {\#include "vtkFlImageRenderWindowInteractor.h"}
+              class vtkFlImageRenderWindowInteractor
+            } {}
+          }
+          Fl_Group {} {open
+            xywh {320 25 250 250} box FLAT_BOX color 22
+          } {
+            Fl_Group m_CDataSegmentedAxial {open
+              xywh {320 25 250 250}
+              code0 {\#include "vtkFlImageRenderWindowInteractor.h"}
+              class vtkFlImageRenderWindowInteractor
+            } {}
+          }
+          Fl_Group {} {open
+            xywh {320 315 250 250} box FLAT_BOX color 22
+          } {
+            Fl_Group m_CDataSegmentedCoronal {open
+              xywh {320 315 250 250}
+              code0 {\#include "vtkFlImageRenderWindowInteractor.h"}
+              class vtkFlImageRenderWindowInteractor
+            } {}
+          }
+          Fl_Value_Slider m_CSWidth {
+            label Sagittal
+            callback {SetSegmentedSliceWidth()}
+            xywh {25 275 250 20} type {Horz Knob} box PLASTIC_DOWN_BOX selection_color 80 labelsize 10 align 6 step 1
+          }
+          Fl_Value_Slider m_CSDepth {
+            label Axial
+            callback {SetSegmentedSliceDepth()}
+            xywh {320 275 250 20} type {Horz Knob} box PLASTIC_DOWN_BOX selection_color 60 labelsize 10 align 6 step 1
+          }
+          Fl_Value_Slider m_CSHeight {
+            label Coronal
+            callback {SetSegmentedSliceHeight()}
+            xywh {320 565 250 20} type {Horz Knob} box PLASTIC_DOWN_BOX selection_color 95 labelsize 10 align 6 step 1
+          }
+          Fl_Group {} {open
+            xywh {5 315 290 250} box FLAT_BOX color 22
+          } {
+            Fl_Group m_C3VOIViewRender {
+              xywh {5 315 290 250}
+              code0 {\#include "vtkFL3ViewRenderWindowInteractor.h"}
+              class vtkFL3ViewRenderWindowInteractor
+            } {}
+          }
+          Fl_Output m_CSPosX {
+            label x
+            xywh {97 572 40 15} labelsize 10 textsize 10
+          }
+          Fl_Output m_CSPosY {
+            label y
+            xywh {155 572 40 15} labelsize 10 textsize 10
+          }
+          Fl_Check_Button m_CMoveVOISlice {
+            label {Move slice}
+            xywh {5 570 80 20} down_box DOWN_BOX value 1 labelsize 11
+          }
+          Fl_Group {} {
+            label Thresholding open
+            xywh {350 620 185 85} box PLASTIC_UP_BOX color 254 labelsize 10 align 5
+          } {
+            Fl_Value_Slider m_CThreshInf {
+              label Inf
+              callback {SetThresholding()}
+              xywh {385 635 135 15} type {Horz Knob} box FLAT_BOX labelsize 11 align 4 maximum 255 step 1
+            }
+            Fl_Value_Slider m_CThreshSup {
+              label Sup
+              callback {SetThresholding()}
+              xywh {385 660 135 15} type {Horz Knob} box FLAT_BOX labelsize 11 align 4 maximum 255 step 1
+            }
+          }
+        }
+      }
+    }
+  }
+  Function {Load()} {return_type virtual
+  } {}
+  Function {SaveVRML()} {return_type virtual
+  } {}
+  Function {SetBrightness()} {open return_type virtual
+  } {}
+  Function {SetSmoothing()} {open return_type virtual
+  } {}
+  Function {SetDecimate()} {open return_type virtual
+  } {}
+  Function {SurfaceRender()} {open return_type virtual
+  } {}
+  Function {RayRender()} {open return_type virtual
+  } {}
+  Function {SetOpacity()} {open return_type virtual
+  } {}
+  Function {SetControlRay()} {open return_type virtual
+  } {}
+  Function {SetControlRender()} {open return_type virtual
+  } {}
+  Function {SetFilteredSliceDepth()} {open return_type virtual
+  } {}
+  Function {SetFilteredSliceWidth()} {open return_type virtual
+  } {}
+  Function {SetFilteredSliceHeight()} {open return_type virtual
+  } {}
+  Function {SetRadius(float value)} {open return_type virtual
+  } {}
+  Function {SetStandardDeviation(float value)} {open return_type virtual
+  } {}
+  Function {SetVOIDepthUp()} {open return_type virtual
+  } {}
+  Function {SetVOIDepthDown()} {open return_type virtual
+  } {}
+  Function {ExtractVOI()} {open return_type virtual
+  } {}
+  Function {SetSegmentedSliceWidth()} {open return_type virtual
+  } {}
+  Function {SetSegmentedSliceDepth()} {open return_type virtual
+  } {}
+  Function {SetSegmentedSliceHeight()} {open return_type virtual
+  } {}
+  Function {SetThresholding()} {open return_type virtual
+  } {}
+  Function {Ruota()} {open return_type virtual
+  } {}
+  Function {SetShadingInterpolationMethod()} {open return_type {virtual void}
+  } {}
+  Function {SetFeatureAngle()} {open return_type {virtual void}
+  } {}
+  Function {SetVolumeResolution()} {open return_type {virtual void}
+  } {}
+  Function {VolumeRender()} {open return_type {virtual void}
+  } {}
+  Function {SaveVTK()} {open return_type {virtual void}
+  } {}
+} 
