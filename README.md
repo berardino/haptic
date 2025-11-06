@@ -1,16 +1,6 @@
+These are two applications I developed as part of my **Master’s thesis project** back in **2002** ([link to thesis](img/FeTouch-Tesi.pdf)). I recently found the original source code on one of my hard drives and thought it was worth sharing.
 
-
-These are the two applications I implemented as part of 
-my [master thesis project](http://sirslab.diism.unisi.it/fetouch/index.htm)
-back in the 2002! I have found the source code on one of my
-hard drives and thought that it was worth to share.
-
-I am planning to update this project so that it can compile
-and run on mac/linux. Then I will try to port both applications
-to rust and implement an haptic rust library that can be 
-used for all devs out there interested on implementing haptic
-applications!
-
+I’m planning to update the project so it can compile and run on macOS and Linux. After that, my goal is to port both applications to **Rust** and build a **Rust-based haptics library** that other developers can use to create haptic applications.
 
 ![](img/demo.jpg)
 
